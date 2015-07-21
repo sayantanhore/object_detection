@@ -1,6 +1,11 @@
-from skimage import io, color, feature
+from skimage import io, feature
+from skimage.color import rgb2gray
+
 
 if __name__ == '__main__':
-	image = "messi.jpeg"
+	filename = "images/messi.jpeg"
+	image = io.imread(filename)
+	image_gray = rgb2gray(image)
 	io.imshow(image)
 	io.show()
+	
