@@ -5,12 +5,10 @@ from scipy import ndimage as ndi
 from skimage import feature, io, exposure
 from skimage.color import rgb2gray
 
+from path import *
 
-# Generate noisy image of a square
-im = np.zeros((128, 128))
-im[32:-32, 32:-32] = 1
 
-im_orig = io.imread("images/im3.jpg")
+im_orig = io.imread(path + "images/im3.jpg")
 im_gray = rgb2gray(im_orig)
 #im = exposure.equalize_hist(im)
 
@@ -20,18 +18,24 @@ im += 0.2 * np.random.random(im.shape)
 
 # Compute the Canny filter for two values of sigma
 edges1 = feature.canny(im)
-edges2 = feature.canny(im, sigma=2)
+edges2 = feature.canny(im, sigma=3)
 
 # display results
 fig, (ax1, ax2, ax3) = plt.subplots(nrows=1, ncols=3, figsize=(8, 3))
 
-ax1.imshow(im_orig, cmap=plt.cm.jet)
+ax1.imshow(im_orig)
 ax1.axis('off')
-ax1.set_title('noisy image', fontsize=20)
+ax1.set_title('Original image', fontsize=20)
 
+ax2.imshow(im_gray, cmap=plt.cm.gray)
+ax2.axis('off')
+ax2.set_title('Grayscale image', fontsize=20)
+
+'''
 ax2.imshow(edges1, cmap=plt.cm.gray)
 ax2.axis('off')
-ax2.set_title('Canny filter, $\sigma=1$', fontsize=20)
+ax2.set_title('Canny filter, $\sigma=3$', fontsize=20)
+'''
 
 ax3.imshow(edges2, cmap=plt.cm.gray)
 ax3.axis('off')
