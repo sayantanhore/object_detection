@@ -13,8 +13,9 @@ im_gray = rgb2gray(im_orig)
 #im = exposure.equalize_hist(im)
 
 #im = ndi.rotate(im, 15, mode='constant')
-im = ndi.gaussian_filter(im_gray, 5)
-im += 0.2 * np.random.random(im.shape)
+im_gauss = ndi.gaussian_filter(im_gray, 0)
+im = im_gauss
+im += 0.2 * np.random.random(im_gauss.shape)
 
 # Compute the Canny filter for two values of sigma
 edges1 = feature.canny(im)
@@ -27,7 +28,7 @@ ax1.imshow(im_orig)
 ax1.axis('off')
 ax1.set_title('Original image', fontsize=20)
 
-ax2.imshow(im_gray, cmap=plt.cm.gray)
+ax2.imshow(im_gauss, cmap=plt.cm.gray)
 ax2.axis('off')
 ax2.set_title('Grayscale image', fontsize=20)
 
