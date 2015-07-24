@@ -8,7 +8,7 @@ from skimage.color import rgb2gray
 from path import *
 
 
-im_orig = io.imread(path + "images/im3.jpg")
+im_orig = io.imread(path + "images/im2.jpg")
 im_gray = rgb2gray(im_orig)
 #im = exposure.equalize_hist(im)
 
